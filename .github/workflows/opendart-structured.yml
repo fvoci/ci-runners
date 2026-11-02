@@ -19,7 +19,7 @@ concurrency:
 
 env:
   # 비공개 저장소의 이미지 빌드 워크플로가 게시한 digest로 고정한다(main d733a40, 2026-11-02 게시)
-  IMAGE: ghcr.io/fvoci/opendart-collector@sha256:524216b51961838d4003cf23137ecec8bea45ba8db4494ea74596d5d26ccfa51
+  IMAGE: ghcr.io/fvoci/opendart-collector@sha256:4cc44c0515c8f48d392c5cc069651b4934eab015b9554ab41b81a03d99bc1962
   PLAN: opendart-structured/structured-plan.stub.json
 
 jobs:
