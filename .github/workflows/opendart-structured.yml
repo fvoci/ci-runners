@@ -108,7 +108,7 @@ jobs:
             -e OPENDART_BUDGET -e OPENDART_BUDGET_SOURCE -e OPENDART_D1_DATABASE \
             -e CLOUDFLARE_ACCOUNT_ID -e CLOUDFLARE_D1_TOKEN \
             -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_ENDPOINT_URL -e R2_BUCKET \
-            -e OPENDART_API_KEY_2 -e OPENDART_API_KEY_3 -e OPENDART_API_KEY_4 -e OPENDART_API_KEY_5 -e OPENDART_API_KEY_6 \
+            -e OPENDART_API_KEY_1 -e OPENDART_API_KEY_2 -e OPENDART_API_KEY_3 -e OPENDART_API_KEY_4 -e OPENDART_API_KEY_5 -e OPENDART_API_KEY_6 \
             "$@" 2>&1 | python3 -u "$RUNNER_TEMP/filter.py"
           EOF
           chmod +x "$RUNNER_TEMP/collector"
@@ -124,6 +124,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          OPENDART_API_KEY_1: ${{ secrets.OPENDART_API_KEY_1 }}  # 계획이 --allow-slot-1일 때만 쓴다(#97)
           OPENDART_API_KEY_2: ${{ secrets.OPENDART_API_KEY_2 }}
           OPENDART_API_KEY_3: ${{ secrets.OPENDART_API_KEY_3 }}
           OPENDART_API_KEY_4: ${{ secrets.OPENDART_API_KEY_4 }}
