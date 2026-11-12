@@ -3,6 +3,8 @@
 #
 # The repository is public, so this workflow prints counts only, takes every input through
 # the environment (never interpolated into a script), and uses GitHub-owned actions only.
+# The same file is installed in every runner repository. Where the repository's ACCT_R2_* key
+# cannot write the raw bucket (compute runners), ACCT_COLLECT_R2_* holds one that can.
 name: accounting-collect
 
 on:
@@ -102,8 +104,8 @@ jobs:
       - name: Fetch and install the collector
         env:
           ACCT_R2_ENDPOINT: ${{ secrets.ACCT_R2_ENDPOINT }}
-          ACCT_R2_ACCESS_KEY_ID: ${{ secrets.ACCT_R2_ACCESS_KEY_ID }}
-          ACCT_R2_SECRET_ACCESS_KEY: ${{ secrets.ACCT_R2_SECRET_ACCESS_KEY }}
+          ACCT_R2_ACCESS_KEY_ID: ${{ secrets.ACCT_COLLECT_R2_ACCESS_KEY_ID || secrets.ACCT_R2_ACCESS_KEY_ID }}
+          ACCT_R2_SECRET_ACCESS_KEY: ${{ secrets.ACCT_COLLECT_R2_SECRET_ACCESS_KEY || secrets.ACCT_R2_SECRET_ACCESS_KEY }}
           ACCT_RAW_BUCKET: ${{ vars.ACCT_RAW_BUCKET }}
           COLLECTOR: ${{ inputs.collector }}
           WHEEL_NAME: ${{ inputs.wheel_name }}
@@ -134,8 +136,8 @@ jobs:
       - name: Run the shard
         env:
           ACCT_R2_ENDPOINT: ${{ secrets.ACCT_R2_ENDPOINT }}
-          ACCT_R2_ACCESS_KEY_ID: ${{ secrets.ACCT_R2_ACCESS_KEY_ID }}
-          ACCT_R2_SECRET_ACCESS_KEY: ${{ secrets.ACCT_R2_SECRET_ACCESS_KEY }}
+          ACCT_R2_ACCESS_KEY_ID: ${{ secrets.ACCT_COLLECT_R2_ACCESS_KEY_ID || secrets.ACCT_R2_ACCESS_KEY_ID }}
+          ACCT_R2_SECRET_ACCESS_KEY: ${{ secrets.ACCT_COLLECT_R2_SECRET_ACCESS_KEY || secrets.ACCT_R2_SECRET_ACCESS_KEY }}
           ACCT_RAW_BUCKET: ${{ vars.ACCT_RAW_BUCKET }}
           ACCT_BROKER_URL: ${{ secrets.ACCT_BROKER_URL }}
           ACCT_BROKER_TOKEN: ${{ secrets.ACCT_BROKER_TOKEN }}
