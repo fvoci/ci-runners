@@ -1,1 +1,3 @@
-비공개 저장소 수집기용 GitHub Actions 러너. 워크플로와 실행 계획만 두고, 코드는 비공개 컨테이너 이미지로만 받는다.
+# ci-runners
+
+accounting-data 수집용 GitHub Actions 러너. `accounting-collect` 워크플로만 둔다. 수집기는 조정 Worker가 배정한 고정 빌드를 받아 설치하고, DART 공개 자료만 다룬다.
